@@ -23,7 +23,7 @@ function ketik(){
     if(i < text.length){
         document.getElementById("text-isi").innerHTML += text.charAt(i);
         i++;
-        setTimeout(ketik, 225);
+        setTimeout(ketik, 230);
     }
     if(i == text.length){
         ketikt();
@@ -34,7 +34,7 @@ function ketikt(){
     if(x < textAuthor.length){
         document.getElementById("text-author").innerHTML += textAuthor.charAt(x);
         x++;
-        setTimeout(ketikt, 100);
+        setTimeout(ketikt, 200);
     }
     if (x == textAuthor.length){ 
         document.getElementById("button").style.display = "block";
