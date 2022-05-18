@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Dari Crush</title>
+</head>
+
+<body>
+    <div id="photo" style="display: none;">
+        <div class="image">
+            <img src="https://i.postimg.cc/8zxYn2xG/FB-IMG-16354292315443416.jpg" alt="gambar_panda" class="ft">
+        </div>
+        <p id="namamu"></p>
+    </div>
+
+    <div id="content" style="display: none;">
+        <p id="text-isi"></p>
+        <p id="text-author"></p>
+    </div>
+
+    <div id="button" style="display: none;">
+        <button type="button" class="btn" onclick="lanjut()">Klik Aja</button>
+    </div>
+   
+
+    
+    <!-- scrip -->
+    <script src="./assets/js/script.js"></script>
+    <script type="text/javascript">
+        var author = 'Crush';
+        var swals = Swal
+
+        async function mulai() {
+            var { value: kenalan} = await swals.fire({
+                title: `Boleh Kenalan Enggak ?`,
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: `Boleh`,
+                denyButtonText: `Gak Boleh`,
+                allowOutsideClick: false,
+            }).then((result) => {
+                if(result.isConfirmed){
+                    window.kenalan = namaKenalan();
+                } else if (result.isDenied){
+                    window.kenalan = kenalanLagi();
+                }
+            })
+        }
+        mulai()
+        async function kenalanLagi(){
+            var{ value: kenalanLagi} = await swals.fire({
+                title: `Boleh Ya :)`,
+                confirmButtonText: `Iya`,
+                allowOutsideClick: false,
+                showCancelButton: false,
+            }).then((rslt) => {
+                window.kenalanLagi = mulai();
+            })
+        }
+        
+        async function namaKenalan(){
+            var { value: nama } = await swals.fire({
+                title: `Nama kamu ?`,
+                input: `text`,
+                confirmButtonText: `Lanjut`,
+                allowOutsideClick: false,
+                showCancelButton: false,
+            });
+            if (nama) {
+                play();
+                window.nama = nama;
+                textAuthor = "Dari: " + author +" ,  Untuk: " + window.nama;
+                textNamamu = "Hallo " + window.nama;
+                await swals.fire(`Hai ${nama}`);
+                await swals.fire(`Ada Pesan Buat ${nama} dari ${author}`);
+                ketiknamamu(); display();
+                
+            } else{
+                await swals.fire("Isi namanya ya!");
+                namaKenalan();
+            }
+        }
+
+        async function lanjut(){
+             await swals.fire("Terima Kasih, Telah Meluangkan Waktunya :)")
+        }
+    </script>
+    <script type="text/javascript">
+        var d = 0, textNamamu;
+        var i = 0, text;
+        text = "Tetap semangat ya.., meskipun kamu saat ini sedang sibuk dengan kuliahmu dan kegiatan BEM yang begitu padat. Tersenyumlah, karena senyummu adalah senyumku juga. Tetap Semangat :)"
+        var x = 0, textAuthor;
+    </script>
+</body>
+
+</html>
